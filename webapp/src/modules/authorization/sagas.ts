@@ -43,6 +43,8 @@ function* handleFetchAuthorizationRequest(
     const payload = action.payload
     const address = payload.address.toLowerCase()
 
+    console.log('PAYLOAD', payload)
+
     const [allowances, approvals] = yield all([
       getAuthorizations(
         payload.allowances,
@@ -72,6 +74,7 @@ function* handleFetchAuthorizationRequest(
 
     yield put(fetchAuthorizationSuccess(address, authorization))
   } catch (error) {
+    console.log(error)
     yield put(fetchAuthorizationFailure(error.message))
   }
 }
